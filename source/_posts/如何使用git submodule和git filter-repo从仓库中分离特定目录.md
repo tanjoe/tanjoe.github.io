@@ -1,6 +1,7 @@
 ---
 title: '如何使用git submodule和git filter-repo从仓库中分离特定目录'
 date: 2020-07-23 10:09:23
+img: /images/git.png
 tags: 
 - git
 ---
