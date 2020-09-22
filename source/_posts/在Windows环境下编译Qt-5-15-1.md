@@ -27,13 +27,13 @@ Qt 5.15.1的下载地址：[Qt 5.15.x source packages](https://www.qt.io/offline
 
 ### 2.1 Visual Studio
 
-Qt可以使用VS 2015，VS 2017，VS 2019进行构建。这里选择使用VS 2019，从https://visualstudio.microsoft.com/zh-hans/下载安装即可。
+Qt可以使用VS 2015，VS 2017，VS 2019进行构建。这里选择使用VS 2019，从https://visualstudio.microsoft.com/zh-hans/ 下载安装即可。
 
 ### 2.2 Perl
 
-Perl的Windows版本有2种可以下载，分别是`ActivePerl`和`Strawberry Perl`。其中`ActivePerl`需要注册后下载，`Strawberry Perl`可以直接下载，推荐`Strawberry Perl`。
+Perl的Windows版本有2种可以下载，分别是`ActivePerl`和`StrawberryPerl`。其中`ActivePerl`需要注册后下载，`StrawberryPerl`可以直接下载，推荐`StrawberryPerl`。
 
-`Strawberry Perl`下载地址：[Strawberry Perl for Windows](http://strawberryperl.com/)
+`StrawberryPerl`下载地址：[Strawberry Perl for Windows](http://strawberryperl.com/)
 
 安装时默认会添加perl到环境变量。安装完成后，可以通过命令行执行`perl -v`测试环境变量是否安装成功。
 
@@ -68,6 +68,8 @@ Perl的Windows版本有2种可以下载，分别是`ActivePerl`和`Strawberry Pe
 LLVM的下载地址：https://releases.llvm.org/download.html
 
 运行下载的预编译安装包安装LLVM时，建议启用将LLVM加入PATH环境变量的选项，以便让QDoc运行时能链接到`libclang.dll`。
+
+> 注意其它软件安装时可能附带安装了`libclang.dll`，如doxygen。因此配置PATH变量后建议运行`where.exe libclang.dll`确认是否能正确找到LLVM的`libclang.dll`
 
 此外，由于Windows下的预编译包没有`llvm-config.exe`文件，需要配置`LLVM_INSTALL_DIR`环境变量，将其值设为LLVM的安装路径，以便能在编译时找到LLVM。环境变量可以设置到系统内，也可以在命令行内临时设置：
 
@@ -181,3 +183,7 @@ nmake install_docs
 Qt Creator需要单独安装，有预编译安装包可用：https://www.qt.io/offline-installers
 
 运行安装包时，需要输入Qt的注册账号和密码。如想跳过这一步，可在Windows的”网络连接“内禁用所有互联网连接。
+
+> 注意，在安装了LLVM后，Qt Creator启动时会自动运行`lldb --version`以确定`lldb`是否可用。`lldb`依赖于`python36.dll`但LLVM的预编译安装包又未附带该文件，这会导致启动Qt Creator时弹出`python36.dll`无法找到的错误。
+>
+> 这是LLVM的一个bug，见https://bugs.llvm.org/show_bug.cgi?id=44087 。目前的解决方法是，自行下载`python36.dll`并放到`lldb.exe`的同级目录下。当然，如果不再需要LLVM也可以直接卸载。
