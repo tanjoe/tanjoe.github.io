@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>c&#43;&#43; on Qiao</title>
+    <link>https://tanjoe.github.io/tags/c&#43;&#43;/</link>
+    <description>Recent content in c&#43;&#43; on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 19 Feb 2023 08:35:31 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu 18.04上切换高版本GCC工具链</title>
+      <link>https://tanjoe.github.io/posts/ubuntu-18.04%E4%B8%8A%E5%88%87%E6%8D%A2%E9%AB%98%E7%89%88%E6%9C%ACgcc%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
+      <pubDate>Sun, 19 Feb 2023 08:35:31 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/ubuntu-18.04%E4%B8%8A%E5%88%87%E6%8D%A2%E9%AB%98%E7%89%88%E6%9C%ACgcc%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
+      <description>Ubuntu 18.04上切换高版本GCC工具链 添加软件源 $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test 如果此前安装过非系统默认版本的python3，这一步有可能出错，产生类似
+$ ModuleNotFoundError: No module named &amp;#39;apt_pkg&amp;#39; 的错误。解决方法是：
+$ cd /usr/lib/python3/dist-packages $ sudo ln -s apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so 随后用update-alternatives将python3改回使用默认的版本：
+$ sudo update-alternatives --config python3 # 选择默认的python3版本。在Ubuntu 18.04上，这个版本是 安装工具链 可以通过apt search gcc或在https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test?field.series_filter=bionic 上查看可用的gcc版本。这里选择安装gcc-11
+$ sudo apt install gcc-11 g++-11 安装完成后，切换工具链
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 90 \ --slave /usr/bin/g++ g++ /usr/bin/g++-11 \ --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-11 \ --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-11 \ --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-11 $ sudo upate-alternatives --config gcc # 选择gcc-11 检查版本：</description>
+    </item>
+    
+    <item>
+      <title>为VTK修复vtkOBJReader的一个segfault</title>
+      <link>https://tanjoe.github.io/posts/%E4%B8%BAvtk%E4%BF%AE%E5%A4%8Dvtkobjreader%E7%9A%84%E4%B8%80%E4%B8%AAsegfault/</link>
+      <pubDate>Wed, 18 Jan 2023 10:28:40 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E4%B8%BAvtk%E4%BF%AE%E5%A4%8Dvtkobjreader%E7%9A%84%E4%B8%80%E4%B8%AAsegfault/</guid>
+      <description>Background 测试用PyTorch3D生成的Mesh时，打算用VTK对Mesh做离屏渲染生成图片，结果发现VTK的python binding和C++库都会在vtkOBJReader::Update时崩溃。由于是AI模型生成的OBJ文件，OBJ本身是有可能不太标准的，但用Blender、Open3D、trimesh测试，发现都可以加载该文件。看起来似乎VTK的vtkOBJReader实现不够健壮，遂决定调试一番。
+Debug 以导致问题的OBJ文件编写复现demo，目录结构：
+$ tree . . ├── assets │ ├── rand_0_diffuse.png │ ├── rand_0_normal.png │ ├── rand_0_skin.mtl │ ├── rand_0_skin.obj │ └── rand_0_spec.png ├── CMakeLists.txt └── main.cpp main.cpp：
+#include &amp;lt;vtkOBJReader.h&amp;gt; int main() { vtkNew&amp;lt;vtkOBJReader&amp;gt; reader; reader-&amp;gt;SetFileName(&amp;#34;rand_0_skin.obj&amp;#34;); reader-&amp;gt;Update(); return 0; } 崩溃堆栈：
+1 vtkAOSDataArrayTemplate&amp;lt;float&amp;gt;::GetTuple vtkAOSDataArrayTemplate.txx 275 0x7ffff6ee05e5 2 vtkOBJReader::RequestData vtkOBJReader.cxx 978 0x7ffff7b4c793 3 vtkPolyDataAlgorithm::ProcessRequest vtkPolyDataAlgorithm.cxx 87 0x7ffff28aaec6 4 vtkExecutive::CallAlgorithm vtkExecutive.cxx 734 0x7ffff287faf9 5 vtkDemandDrivenPipeline::ExecuteData vtkDemandDrivenPipeline.cxx 461 0x7ffff2876004 6 vtkCompositeDataPipeline::ExecuteData vtkCompositeDataPipeline.</description>
+    </item>
+    
+    <item>
+      <title>处理托管C&#43;&#43;的EEFileLoadException</title>
+      <link>https://tanjoe.github.io/posts/%E5%A4%84%E7%90%86%E6%89%98%E7%AE%A1c&#43;&#43;%E7%9A%84eefileloadexception/</link>
+      <pubDate>Wed, 04 Nov 2020 11:58:00 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E5%A4%84%E7%90%86%E6%89%98%E7%AE%A1c&#43;&#43;%E7%9A%84eefileloadexception/</guid>
+      <description>背景 因为业务的原因，需要从C++端调用一个C#库，设计的调用流程如下：
+graph LR; n[&amp;#34;Native C++&amp;#34;]--&amp;gt;m[&amp;#34;Managed C++&amp;#34;]; m--&amp;gt;s[&amp;#34;C#&amp;#34;]; 工程的组织如下：
+graph LR; subgraph &amp;#34;Native C++&amp;#34; user[&amp;#34;Native C++库使用者&amp;#34;] nt[&amp;#34;Native C++库单元测试&amp;#34;]; n[&amp;#34;Native C++库&amp;#34;]; end m[&amp;#34;Managed C++库&amp;#34;]; subgraph &amp;#34;C#&amp;#34; s[&amp;#34;C#库&amp;#34;]; st[&amp;#34;C#库单元测试&amp;#34;]; end user-.-&amp;gt;|显式加载|n; nt--&amp;gt;n; n--&amp;gt;m; m--&amp;gt;s; st--&amp;gt;s; 动态库工程：
+Native C++库：生成Unmanaged.lib和Unmanaged.dll Managed C++库：生成Wrapper.lib和Wrapper.dll C#库：生成Managed.dll 可执行文件工程：
+Native C++库单元测试：生成UnmanagedTest.exe C#库单元测试：生成ManagedTest.exe Native C++库使用者：生成LibConsumer.exe。与单元测试工程不同的是，LibConsumer.exe会在运行期间调用::LoadLibrary()显示加载Unmanaged.dll，在链接期也不会链接到Unmanaged.lib和Wrapper.lib 现在情况如下：C#库编写完成，且C#库单元测试通过，但Native C++库单元测试未通过，LibConsumer.exe加载Unmanaged.dll也会失败（::LoadLibrary()返回句柄为NULL）。调试发现在托管C++层创建C#对象时会出现EEFileLoadException导致程序崩溃。
+EEFileLoadException Microsoft Docs没有找到对EEFileLoadException的描述，不过Stackoverflow上有个简要的回答，见EEFileLoadException When Loading C++ DLL in Managed DLL：
+An EEFileLoadException indicates the executable cannot find or load one of it&amp;rsquo;s dependencies. That can of course has different causes (path problem, mixing configurations, mixing platforms).</description>
+    </item>
+    
+  </channel>
+</rss>

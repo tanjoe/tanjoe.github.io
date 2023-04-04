@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CMake on Qiao</title>
+    <link>https://tanjoe.github.io/tags/cmake/</link>
+    <description>Recent content in CMake on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 17 Sep 2020 11:42:52 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Windows上编译VTK-9-0-1及其示例</title>
+      <link>https://tanjoe.github.io/posts/%E5%9C%A8windows%E4%B8%8A%E7%BC%96%E8%AF%91vtk-9-0-1%E5%8F%8A%E5%85%B6%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Thu, 17 Sep 2020 11:42:52 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E5%9C%A8windows%E4%B8%8A%E7%BC%96%E8%AF%91vtk-9-0-1%E5%8F%8A%E5%85%B6%E7%A4%BA%E4%BE%8B/</guid>
+      <description>1 准备工作 在Windows下编译VTK需要以下内容：
+CMake 3.10及以上 Visual Studio及MSVC编译环境 VTK源码 1.1 下载VTK源码 可以在https://vtk.org/download/ 下载VTK的源码、测试数据、文档等内容
+其中，VTKData-9.0.1.tar.gz是VTK用于测试的数据，VTKLargeData-9.0.1.tar.gz是VTK部分示例程序所用的数据，这两个文件都可以不用下载，只下载VTK-9.0.1.tar.gz即可。
+2 生成VTK 2.1 创建目录 为VTK创建一个文件夹 在文件夹内，创建src和build目录，分别存放源码和生成的文件 将VTK-9.0.1.tar.gz解压到src内 目录结构类似于：
+c:\data\cpp\vtk\build &amp;lt;--空 c:\data\cpp\vtk\src c:\data\cpp\vtk\src\Accelerators c:\data\cpp\vtk\src\Charts c:\data\cpp\vtk\src\.... 2.2 运行CMake 打开CMake-GUI
+选择VTK的源码路径和生成路径
+点击“Configure”
+选择需要的“generator”，这里选择Visual Studio 15 2017 Win64作为生成器
+根据需要调整CMake选项。以下为部分常见的选项：
+CMAKE_INSTALL_PRFIX：生成的VTK库的安装路径。根据需要选择即可
+VTK_BUILD_EXAMPLES：默认为OFF，勾选后生成测试时将一并生成示例代码。由于源码中的测试工程管理不便，且测试资源需要单独下载和配置，这里选择不生成源码中的示例，后续单独克隆VTK的测试代码仓库并生成。
+VTK_USE_CUDA：默认为OFF，勾选后开启对CUDA的支持
+VTK_GROUP_QT：勾选后将开启对Qt的支持，编译VTK在Qt中的控件类等
+再次点击“Configure”进行配置
+点击“Generator”生成VS 2017对应的工程
+点击&amp;quot;Open Project&amp;quot;，这时会调用VS 2017打开CMake生成的工程
+2.3 构建 在VS 2017中将配置切换到&amp;quot;Release&amp;quot;，右键ALL_BUILD项目，选择“生成”即可。构建完成后，在build/bin/Release下便能看到编译好的动态库文件。
+2.4 安装 右键INSTALL项目，选择“生成”即可将VTK相关的头文件、库文件、动态库文件安装到CMAKE_INSTALL_PREFIX指定的位置。安装完成后，目录结构应类似于：
+c:\program file\VTK\bin c:\program file\VTK\include c:\program file\VTK\lib c:\program file\VTK\share 其中，\bin目录包含了所有的VTK动态库文件，可以该路径加入环境变量。
+如果需要更改安装路径，再次打开CMake-GUI更改CMAKE_INSTALL_PREFIX后，重新加载工程生成INSTALL即可
+3 生成示例 3.1 示例的来源 如前所言，VTK源码包内已经附带了一些示例程序，这些示例程序旨在以简单一致的格式来说明VTK的一些概念，然而这些例子只涵盖了VTK功能的一小部分。</description>
+    </item>
+    
+  </channel>
+</rss>

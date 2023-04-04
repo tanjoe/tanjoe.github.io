@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C on Qiao</title>
+    <link>https://tanjoe.github.io/tags/c/</link>
+    <description>Recent content in C on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 24 Mar 2023 14:46:42 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debug Unity Project on Android Device</title>
+      <link>https://tanjoe.github.io/posts/debug-unity-project-on-android-device/</link>
+      <pubDate>Fri, 24 Mar 2023 14:46:42 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/debug-unity-project-on-android-device/</guid>
+      <description>由于工作需要，在C++/Python的主业外，零零散散地与Unity打了些交道。这里记录下在安卓上调试Unity项目的要点。
+修改Build Settings 点击File-&amp;gt;Build Settings，在Android build setting里勾选“Development Build”和“Script Debugging”。
+开启USB调试 Android设备需开启USB调试选项。通常是在系统设置里查看系统信息，多次点击系统版本以启用开发者选项，再到开发者选项里启用USB调试即可。这一步是安卓开发的基础，略过不谈。
+连接设备到PC 有线连接 有线连接即通过USB线将设备连接到PC即可。可以通过adb devices命令确定可用的设备。
+无线连接 无线连接需要PC和Android设备连接到同一WIFI。
+查看设备IP 可以在设备的系统设置里找到IP，通常是在网络的详情里。也可以用ADB查看，终端执行
+adb shell ip addr show wlan0 连接到设备 PC终端执行
+adb tcpip 5555 adb connect [AndroidDeviceIP]:5555 Attach Unity Debugger 在Android上运行Unity应用后，在Visual Studio中点击“Debug”-&amp;gt;“Attach Unity Debugger”：
+随后选择对应的Android设备即可
+设置Android SDK路径 如果系统中有多个Android SDK版本，在Select Unity Instance中可能不会看到对应的设备，这是因为Visual Studio使用的SDK工具没有对应。
+在Unity中，点击Edit-&amp;gt;Preferences-&amp;gt;External Tools，复制所用的Android SDK工具路径：
+随后在Visual Studio中，点击Tool-&amp;gt;Options-&amp;gt;Tools for Unity-&amp;gt;General，设置Preferred Android Sdk Root：
+设置完成后，可能需要重新运行Unity应用，才能在Select Unity Instance中找到对应的设备。
+Reference Debugging Unity Project On Android Device With Visual Studio – Siddharth Shanker Mishra Cannot Debug on Android Device from Visual Studio - Unity Forum </description>
+    </item>
+    
+    <item>
+      <title>处理托管C&#43;&#43;的EEFileLoadException</title>
+      <link>https://tanjoe.github.io/posts/%E5%A4%84%E7%90%86%E6%89%98%E7%AE%A1c&#43;&#43;%E7%9A%84eefileloadexception/</link>
+      <pubDate>Wed, 04 Nov 2020 11:58:00 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E5%A4%84%E7%90%86%E6%89%98%E7%AE%A1c&#43;&#43;%E7%9A%84eefileloadexception/</guid>
+      <description>背景 因为业务的原因，需要从C++端调用一个C#库，设计的调用流程如下：
+graph LR; n[&amp;#34;Native C++&amp;#34;]--&amp;gt;m[&amp;#34;Managed C++&amp;#34;]; m--&amp;gt;s[&amp;#34;C#&amp;#34;]; 工程的组织如下：
+graph LR; subgraph &amp;#34;Native C++&amp;#34; user[&amp;#34;Native C++库使用者&amp;#34;] nt[&amp;#34;Native C++库单元测试&amp;#34;]; n[&amp;#34;Native C++库&amp;#34;]; end m[&amp;#34;Managed C++库&amp;#34;]; subgraph &amp;#34;C#&amp;#34; s[&amp;#34;C#库&amp;#34;]; st[&amp;#34;C#库单元测试&amp;#34;]; end user-.-&amp;gt;|显式加载|n; nt--&amp;gt;n; n--&amp;gt;m; m--&amp;gt;s; st--&amp;gt;s; 动态库工程：
+Native C++库：生成Unmanaged.lib和Unmanaged.dll Managed C++库：生成Wrapper.lib和Wrapper.dll C#库：生成Managed.dll 可执行文件工程：
+Native C++库单元测试：生成UnmanagedTest.exe C#库单元测试：生成ManagedTest.exe Native C++库使用者：生成LibConsumer.exe。与单元测试工程不同的是，LibConsumer.exe会在运行期间调用::LoadLibrary()显示加载Unmanaged.dll，在链接期也不会链接到Unmanaged.lib和Wrapper.lib 现在情况如下：C#库编写完成，且C#库单元测试通过，但Native C++库单元测试未通过，LibConsumer.exe加载Unmanaged.dll也会失败（::LoadLibrary()返回句柄为NULL）。调试发现在托管C++层创建C#对象时会出现EEFileLoadException导致程序崩溃。
+EEFileLoadException Microsoft Docs没有找到对EEFileLoadException的描述，不过Stackoverflow上有个简要的回答，见EEFileLoadException When Loading C++ DLL in Managed DLL：
+An EEFileLoadException indicates the executable cannot find or load one of it&amp;rsquo;s dependencies. That can of course has different causes (path problem, mixing configurations, mixing platforms).</description>
+    </item>
+    
+  </channel>
+</rss>

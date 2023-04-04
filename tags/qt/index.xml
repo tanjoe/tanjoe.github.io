@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Qt on Qiao</title>
+    <link>https://tanjoe.github.io/tags/qt/</link>
+    <description>Recent content in Qt on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 21 Sep 2020 15:11:34 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/qt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Windows环境下编译Qt-5-15-1</title>
+      <link>https://tanjoe.github.io/posts/%E5%9C%A8windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%BC%96%E8%AF%91qt-5-15-1/</link>
+      <pubDate>Mon, 21 Sep 2020 15:11:34 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E5%9C%A8windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%BC%96%E8%AF%91qt-5-15-1/</guid>
+      <description>自Qt 5.15开始，Qt对于开源用户只提供源码包的下载，不再提供预编译安装包。这一策略或是为了促使更多人购买Qt的商用授权。无论对这一决策的态度如何，自Qt 5.15开始，无论是使用静态库还是动态库，编译Qt都将是一个必不可少的步骤了。
+1 源码下载 Qt 5.15.1的下载地址：Qt 5.15.x source packages
+也可以从国内的镜像下载，Qt的镜像列表：https://download.qt.io/static/mirrorlist/
+下载qt-everywhere-src-5.15.1.zip后解压，这里假定将源码解压到qt5.15.1-src目录。
+2 编译环境搭建 在Windows环境下从源码编译安装Qt，除VS开发环境外，还需要先安装Perl和Python。此外，还有一些可选的三方库可以安装，如OpenSSL Toolkit、ICU、ANGLE，这些库可以为Qt提供额外的特性，但并不是必要的，参见Qt官方文档对编译环境的描述：Qt for Windows - Requirements Qt 5.14。
+2.1 Visual Studio Qt可以使用VS 2015，VS 2017，VS 2019进行构建。这里选择使用VS 2019，从https://visualstudio.microsoft.com/zh-hans/ 下载安装即可。
+2.2 Perl Perl的Windows版本有2种可以下载，分别是ActivePerl和StrawberryPerl。其中ActivePerl需要注册后下载，StrawberryPerl可以直接下载，推荐StrawberryPerl。
+StrawberryPerl下载地址：Strawberry Perl for Windows
+安装时默认会添加perl到环境变量。安装完成后，可以通过命令行执行perl -v测试环境变量是否安装成功。
+2.3 Python 对于Python，Python 2只被qpdf、qwebengine等几个模块需要，如果不需要这几个模块可以只安装Python 3。这里选择只安装Python 3。
+在Windows 10下安装Python的注意事项
+从Windows 10 2019 五月更新以来，微软试图把 Python 带到 Windows，因此在C:\Users\%USERNAME%\AppData\Local\Microsoft\WindowsApps路径下加入了python.exe、python3.exe几个占位文件。
+这几个文件并非真正的python解释器，执行后会弹出Windows Store页面并定位到Python App的详情页。由于这几个文件也处在系统的PATH环境变量内，当用户执行python时有可能会调用占位文件而非实际的python解释器，从而导致运行错误。
+可以通过以下步骤关闭该设置：
+输入app exec打开Windows的“应用程序别名”界面
+关闭为python.exe和python2.exe设置的别名
+下载Python：Python Releases for Windows Python.org
+安装时选择将Python加入环境变量。可以在命令行内输入python，检查Python解释器是否会运行。
+2.4 LLVM 从Qt 5.</description>
+    </item>
+    
+  </channel>
+</rss>

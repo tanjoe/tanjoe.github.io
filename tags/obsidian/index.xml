@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Obsidian on Qiao</title>
+    <link>https://tanjoe.github.io/tags/obsidian/</link>
+    <description>Recent content in Obsidian on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 25 Feb 2022 15:19:51 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/obsidian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用Rclone在Linux下与OneDrive同步</title>
+      <link>https://tanjoe.github.io/posts/%E7%94%A8rclone%E5%9C%A8linux%E4%B8%8B%E4%B8%8Eonedrive%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Fri, 25 Feb 2022 15:19:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E7%94%A8rclone%E5%9C%A8linux%E4%B8%8B%E4%B8%8Eonedrive%E5%90%8C%E6%AD%A5/</guid>
+      <description>接触Obsidian以后，决心将笔记从OneNote转换成Markdown格式，再由Obisian管理，同步则还是用OneDrive。OneDrive在Linux下没有客户端，不过可以借助Rclone与OneDrive API交互做同步。
+安装 curl https://rclone.org/install.sh | sudo bash 配置 Rclone的文档相当齐全，这里参考https://rclone.org/onedrive/ 进行配置。终端输入
+rclone config 按提示设定storage的名称（这里设定为onedrive），选择storage类型为Microsoft OneDrive，随后Rclone会唤起浏览器打开登录页面
+e) Edit existing remote n) New remote d) Delete remote r) Rename remote c) Copy remote s) Set configuration password q) Quit config e/n/d/r/c/s/q&amp;gt; n name&amp;gt; onedrive Type of storage to configure. Enter a string value. Press Enter for the default (&amp;#34;&amp;#34;). Choose a number from below, or type in your own value [snip] XX / Microsoft OneDrive \ &amp;#34;onedrive&amp;#34; [snip] Storage&amp;gt; onedrive Microsoft App Client Id Leave blank normally.</description>
+    </item>
+    
+  </channel>
+</rss>

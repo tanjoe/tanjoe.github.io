@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Qiao</title>
+    <link>https://tanjoe.github.io/tags/</link>
+    <description>Recent content in Tags on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 24 Mar 2023 14:46:42 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android</title>
+      <link>https://tanjoe.github.io/tags/android/</link>
+      <pubDate>Fri, 24 Mar 2023 14:46:42 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C</title>
+      <link>https://tanjoe.github.io/tags/c/</link>
+      <pubDate>Fri, 24 Mar 2023 14:46:42 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/c/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unity</title>
+      <link>https://tanjoe.github.io/tags/unity/</link>
+      <pubDate>Fri, 24 Mar 2023 14:46:42 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/unity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>c&#43;&#43;</title>
+      <link>https://tanjoe.github.io/tags/c&#43;&#43;/</link>
+      <pubDate>Sun, 19 Feb 2023 08:35:31 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://tanjoe.github.io/tags/linux/</link>
+      <pubDate>Sun, 19 Feb 2023 08:35:31 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visualization</title>
+      <link>https://tanjoe.github.io/tags/visualization/</link>
+      <pubDate>Wed, 18 Jan 2023 10:28:40 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VTK</title>
+      <link>https://tanjoe.github.io/tags/vtk/</link>
+      <pubDate>Wed, 18 Jan 2023 10:28:40 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/vtk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://tanjoe.github.io/tags/docker/</link>
+      <pubDate>Tue, 03 Jan 2023 17:54:29 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://tanjoe.github.io/tags/python/</link>
+      <pubDate>Tue, 03 Jan 2023 17:54:29 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CUDA</title>
+      <link>https://tanjoe.github.io/tags/cuda/</link>
+      <pubDate>Sun, 01 Jan 2023 10:01:29 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/cuda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenGL</title>
+      <link>https://tanjoe.github.io/tags/opengl/</link>
+      <pubDate>Sun, 01 Jan 2023 10:01:29 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/opengl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WSL2</title>
+      <link>https://tanjoe.github.io/tags/wsl2/</link>
+      <pubDate>Tue, 13 Dec 2022 20:13:00 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/wsl2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI</title>
+      <link>https://tanjoe.github.io/tags/ci/</link>
+      <pubDate>Sat, 10 Dec 2022 16:28:00 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hexo</title>
+      <link>https://tanjoe.github.io/tags/hexo/</link>
+      <pubDate>Sat, 10 Dec 2022 16:28:00 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/hexo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tracing</title>
+      <link>https://tanjoe.github.io/tags/tracing/</link>
+      <pubDate>Fri, 25 Feb 2022 18:04:35 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/tracing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>perf</title>
+      <link>https://tanjoe.github.io/tags/perf/</link>
+      <pubDate>Fri, 25 Feb 2022 17:28:59 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/perf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Profiling</title>
+      <link>https://tanjoe.github.io/tags/profiling/</link>
+      <pubDate>Fri, 25 Feb 2022 17:28:59 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/profiling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud</title>
+      <link>https://tanjoe.github.io/tags/cloud/</link>
+      <pubDate>Fri, 25 Feb 2022 15:19:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Obsidian</title>
+      <link>https://tanjoe.github.io/tags/obsidian/</link>
+      <pubDate>Fri, 25 Feb 2022 15:19:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/obsidian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GDB</title>
+      <link>https://tanjoe.github.io/tags/gdb/</link>
+      <pubDate>Fri, 11 Feb 2022 16:12:59 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/gdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Qt</title>
+      <link>https://tanjoe.github.io/tags/qt/</link>
+      <pubDate>Mon, 21 Sep 2020 15:11:34 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/qt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CMake</title>
+      <link>https://tanjoe.github.io/tags/cmake/</link>
+      <pubDate>Thu, 17 Sep 2020 11:42:52 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/cmake/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://tanjoe.github.io/tags/git/</link>
+      <pubDate>Thu, 23 Jul 2020 10:09:23 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

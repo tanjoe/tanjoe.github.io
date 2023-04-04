@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>linux on Qiao</title>
+    <link>https://tanjoe.github.io/tags/linux/</link>
+    <description>Recent content in linux on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 19 Feb 2023 08:35:31 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu 18.04上切换高版本GCC工具链</title>
+      <link>https://tanjoe.github.io/posts/ubuntu-18.04%E4%B8%8A%E5%88%87%E6%8D%A2%E9%AB%98%E7%89%88%E6%9C%ACgcc%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
+      <pubDate>Sun, 19 Feb 2023 08:35:31 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/ubuntu-18.04%E4%B8%8A%E5%88%87%E6%8D%A2%E9%AB%98%E7%89%88%E6%9C%ACgcc%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
+      <description>Ubuntu 18.04上切换高版本GCC工具链 添加软件源 $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test 如果此前安装过非系统默认版本的python3，这一步有可能出错，产生类似
+$ ModuleNotFoundError: No module named &amp;#39;apt_pkg&amp;#39; 的错误。解决方法是：
+$ cd /usr/lib/python3/dist-packages $ sudo ln -s apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so 随后用update-alternatives将python3改回使用默认的版本：
+$ sudo update-alternatives --config python3 # 选择默认的python3版本。在Ubuntu 18.04上，这个版本是 安装工具链 可以通过apt search gcc或在https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test?field.series_filter=bionic 上查看可用的gcc版本。这里选择安装gcc-11
+$ sudo apt install gcc-11 g++-11 安装完成后，切换工具链
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 90 \ --slave /usr/bin/g++ g++ /usr/bin/g++-11 \ --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-11 \ --slave /usr/bin/gcc-nm gcc-nm /usr/bin/gcc-nm-11 \ --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-11 $ sudo upate-alternatives --config gcc # 选择gcc-11 检查版本：</description>
+    </item>
+    
+    <item>
+      <title>利用strace查找文件热点</title>
+      <link>https://tanjoe.github.io/posts/%E5%88%A9%E7%94%A8strace%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E7%83%AD%E7%82%B9/</link>
+      <pubDate>Fri, 25 Feb 2022 18:04:35 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E5%88%A9%E7%94%A8strace%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E7%83%AD%E7%82%B9/</guid>
+      <description>在做性能调优时，遇到这么一个问题：已知国产机（飞腾+麒麟OS）上机械硬盘的性能非常差，文件读写会有不少开销，那么怎么跟踪程序的读写情况，尽量优化掉不必要的读写呢？这需要查找文件热点。对于这项工作，BPF Compiler Collection里的filetop是个很好的选择，不过BCC这组工具在麒麟OS源里没有提供，遂考虑用strace实现。
+跟踪系统调用 严格来说，strace并不能直接跟踪文件的读写情况，而是跟踪所有接受一个文件名为参数的系统调用。不过无论是频繁读写还是频繁判断文件状态，对于调优而言都是可待优化的，因此这里没有严格区分两者。
+跟踪文件相关的系统调用：
+$ strace -t -e trace=file -o strace.log COMMAND # --trace=file # Trace all system calls which take a file name as an argument. You can think of this as an abbreviation for -e trace=open,stat,chmod,unlink,... which is useful to seeing what files the process is referencing. --trace=还可以使用process、network、signal、desc、memory等等，参见https://man7.org/linux/man-pages/man1/strace.1.html
+示例
+$ strace -t -e trace=file -o strace.log fc-list $ cat strace.log 18:07:24 execve(&amp;#34;/home/tanqiao/program/hotspot/hotspot&amp;#34;, [&amp;#34;hotspot&amp;#34;], 0x7ffc0b28a138 /* 80 vars */) = 0 18:07:24 access(&amp;#34;/etc/ld.</description>
+    </item>
+    
+    <item>
+      <title>Add dynamic tracing point in C&#43;&#43; dynamic library</title>
+      <link>https://tanjoe.github.io/posts/add-dynamic-tracing-point-in-c&#43;&#43;-dynamic-library/</link>
+      <pubDate>Fri, 25 Feb 2022 17:28:59 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/add-dynamic-tracing-point-in-c&#43;&#43;-dynamic-library/</guid>
+      <description>List functions To list all functions exported
+$ perf probe -x libQt5CoreKso.so --funcs --filter &amp;#39;*&amp;#39; If you don&amp;rsquo;t add --filter &#39;*&#39;, then all functions that start with _ will be filtered by default
+To list all functions in original form:
+$ perf probe -x libQt5CoreKso.so --funcs --no-demangle --filter &amp;#39;*&amp;#39; Combine with grep, you can find the desired function
+$ perf probe -x libQt5CoreKso.so --funcs --no-demangle --filter &amp;#39;*&amp;#39; | grep setValue _ZN6kso_qt11QJsonObject10setValueAtEiRKNS_10QJsonValueE _ZN6kso_qt18QCommandLineOption12setValueNameERKNS_7QStringE _ZN6kso_qt24QVariantAnimationPrivate10setValueAtEdRKNS_8QVariantE _ZN6kso_qt9QSettings8setValueERKNS_7QStringERKNS_8QVariantE Add tracing point To add a function as tracing point:</description>
+    </item>
+    
+  </channel>
+</rss>

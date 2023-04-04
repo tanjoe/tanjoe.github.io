@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Profiling on Qiao</title>
+    <link>https://tanjoe.github.io/tags/profiling/</link>
+    <description>Recent content in Profiling on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 25 Feb 2022 17:28:59 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/profiling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Add dynamic tracing point in C&#43;&#43; dynamic library</title>
+      <link>https://tanjoe.github.io/posts/add-dynamic-tracing-point-in-c&#43;&#43;-dynamic-library/</link>
+      <pubDate>Fri, 25 Feb 2022 17:28:59 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/add-dynamic-tracing-point-in-c&#43;&#43;-dynamic-library/</guid>
+      <description>List functions To list all functions exported
+$ perf probe -x libQt5CoreKso.so --funcs --filter &amp;#39;*&amp;#39; If you don&amp;rsquo;t add --filter &#39;*&#39;, then all functions that start with _ will be filtered by default
+To list all functions in original form:
+$ perf probe -x libQt5CoreKso.so --funcs --no-demangle --filter &amp;#39;*&amp;#39; Combine with grep, you can find the desired function
+$ perf probe -x libQt5CoreKso.so --funcs --no-demangle --filter &amp;#39;*&amp;#39; | grep setValue _ZN6kso_qt11QJsonObject10setValueAtEiRKNS_10QJsonValueE _ZN6kso_qt18QCommandLineOption12setValueNameERKNS_7QStringE _ZN6kso_qt24QVariantAnimationPrivate10setValueAtEdRKNS_8QVariantE _ZN6kso_qt9QSettings8setValueERKNS_7QStringERKNS_8QVariantE Add tracing point To add a function as tracing point:</description>
+    </item>
+    
+    <item>
+      <title>poor-man-s-profiler</title>
+      <link>https://tanjoe.github.io/posts/poor-man-s-profiler/</link>
+      <pubDate>Fri, 11 Feb 2022 16:12:59 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/poor-man-s-profiler/</guid>
+      <description>背景 Linux下perf可以说是首选的性能调优工具——无需重新编译目标软件，支持采样多种类型的事件，开销相对较小。不过perf也有明显的缺点，perf是通过采样事件（并且通常都是采样CPU事件）来记录软件运行情况的，因此它的结果往往只能反映程序在某一方面的表现。
+换而言之，如果perf采样的是CPU事件，那么其结果只能代表程序On-CPU的表现，至于Off-CPU部分则需要另外采样。虽然也可以通过采样sched:sched_stat_sleep、sched:sched_switch、sched:sched_process_exit来间接分析Off-CPU的情况，但Off-CPU瓶颈的类型可能有很多（IO、线程同步、内存等），只采样特定事件分析容易有所遗漏。
+这自然地引出一个问题：有没有工具能够按固定时间间隔记录程序当前调用栈？
+不幸的是，perf虽然支持记录cpu-clock、task-clock事件，但内核并没有提供类似于wall-clock的事件。其它采样工具，诸如gprof、gperftools、Valgrind也是如此。
+poor man&amp;rsquo;s profiler 所谓的poor man&amp;rsquo;s profiler，其原理非常简单。用GDB启动（或关联到）进程，并按一定间隔中断进程并检查当前调用栈，函数的开销则与其在调用栈中出现的频率成正比。
+一个简单的实现，poor-profiler.sh：
+#!/bin/bash set -e command=&amp;#34;&amp;#34; sample_number=100 sleep_time=0.01 output_file=&amp;#34;poorman-profiler.log&amp;#34; PID=0 # parse arguments while getopts e:n:t:o:p: flag do case &amp;#34;${flag}&amp;#34; in e) command=${OPTARG} ;; n) sample_number=${OPTARG} ;; t) sleep_time=${OPTARG} ;; o) output_file=${OPTARG} ;; p) PID=${OPTARG} ;; *) echo &amp;#34;${OPTARG} are ignored&amp;#34; &amp;gt;&amp;amp;2 ;; esac done # remove old log if [ -f &amp;#34;$output_file&amp;#34; ] ; then rm -v &amp;#34;$output_file&amp;#34; fi # run command in background if not empty if [ -n &amp;#34;$VAR&amp;#34; ]; then ${command} &amp;amp; PID=$!</description>
+    </item>
+    
+  </channel>
+</rss>

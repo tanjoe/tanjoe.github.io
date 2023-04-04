@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>OpenGL on Qiao</title>
+    <link>https://tanjoe.github.io/tags/opengl/</link>
+    <description>Recent content in OpenGL on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 01 Jan 2023 10:01:29 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/opengl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在容器内使用显卡进行渲染</title>
+      <link>https://tanjoe.github.io/posts/%E5%9C%A8%E5%AE%B9%E5%99%A8%E5%86%85%E4%BD%BF%E7%94%A8%E6%98%BE%E5%8D%A1%E8%BF%9B%E8%A1%8C%E6%B8%B2%E6%9F%93/</link>
+      <pubDate>Sun, 01 Jan 2023 10:01:29 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E5%9C%A8%E5%AE%B9%E5%99%A8%E5%86%85%E4%BD%BF%E7%94%A8%E6%98%BE%E5%8D%A1%E8%BF%9B%E8%A1%8C%E6%B8%B2%E6%9F%93/</guid>
+      <description>由于要测试PyTorch3D生成的Mesh，而PyTorch3D的环境在本机又不好搭建，准备在Docker容器内做些渲染相关的工作，按关键词nvidia opengl docker搜索了一番，发现应该很好完成。
+结合几篇文章的内容，以及nvidia/opengl的Dockerfile来看，核心是安装libglvnd0及一些依赖库、配置好glvnd的vendor json文件、设置nvidia docker的环境变量即可，但一番操作下来，在容器内安装mesa-utils和glmark2后，用glxinfo和glmark2都显示vendor是：
+OpenGL renderer string: llvmpipe (LLVM 11.0.0, 256 bits) 即仍然在使用软渲染，但nvidia-smi在容器内工作又是正常的。
+使用集显 在Host机器上测试glxinfo和glmark2，发现vendor居然也不是nvidia而是MESA Intel，也就是电脑的集成显卡。不过集成显卡就集成显卡吧，好歹让容器能够用集显，这样工作好歹可以继续。
+测试后，发现在docker run时附带--device=/dev/dri:/dev/dri参数即可。这样操作后，容器内glxinfo总算显示vendor是集成显卡了，由于工作要求的渲染性能不高，代码倒也能跑起来。
+关于Linux DRI，可参考Linux graphic subsystem(2)_DRI介绍的说明
+使用独显 话说回来，为什么host和容器都显示vendor是集显而非Nvidia的独显？明明nvidia-smi工作正常，CUDA的代码也能运行。带此疑问，用why glxinfo not detect nvidia while nividia-smi works搜索一番，发现Nvidia的论坛里也有些相似的问题，但求助都没有明确答复。
+最后本机上打开nvidia-settings查看设置时，发现Profile里的3个选项：
+Nvidia (Performance mode) Nvidia On-Demand Intel (Power saving mode) 第3个很好理解，但Nvidia Performance mode和On-Demand又有什么区别？搜索一番，发现此贴：
+Nvidia On - Demand : Ubuntu
+there&amp;rsquo;s a good write up here: https://www.linuxuprising.com/2019/08/nvidia-43517-linux-beta-driver-adds.html
+on-demand means the Ubuntu optimus tool now lets you have dynamic switching of nvidia, but output is limited to the laptop screen, which is &amp;lsquo;bumblebee mode&amp;rsquo;, or the normal ubuntu Nvidia mode, which turns on the card after you restart X; this mode uses nvidia to render everything, and external monitors work.</description>
+    </item>
+    
+  </channel>
+</rss>

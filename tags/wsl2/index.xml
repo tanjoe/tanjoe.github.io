@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>WSL2 on Qiao</title>
+    <link>https://tanjoe.github.io/tags/wsl2/</link>
+    <description>Recent content in WSL2 on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 13 Dec 2022 20:13:00 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/wsl2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Use docker with Nvidia GPU in WSL2</title>
+      <link>https://tanjoe.github.io/posts/use-docker-with-nvidia-gpu-in-wsl2/</link>
+      <pubDate>Tue, 13 Dec 2022 20:13:00 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/use-docker-with-nvidia-gpu-in-wsl2/</guid>
+      <description>GPU Support 先确认Docker Desktop的Backend使用的是WSL2，并且Windows、Nvidia驱动的版本足够，随后管理员权限终端执行wsl --update更新wsl。完成后，终端执行
+docker run --rm -it --gpus=all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark 如果GPU可用，则输出类似于
+Run &amp;#34;nbody -benchmark [-numbodies=&amp;lt;numBodies&amp;gt;]&amp;#34; to measure performance. -fullscreen (run n-body simulation in fullscreen mode) -fp64 (use double precision floating point values for simulation) -hostmem (stores simulation data in host memory) -benchmark (run benchmark to measure performance) -numbodies=&amp;lt;N&amp;gt; (number of bodies (&amp;gt;= 1) to run in simulation) -device=&amp;lt;d&amp;gt; (where d=0,1,2.... for the CUDA device to use) -numdevices=&amp;lt;i&amp;gt; (where i=(number of CUDA devices &amp;gt; 0) to use for simulation) -compare (compares simulation results running once on the default GPU and once on the CPU) -cpu (run n-body simulation on the CPU) -tipsy=&amp;lt;file.</description>
+    </item>
+    
+  </channel>
+</rss>

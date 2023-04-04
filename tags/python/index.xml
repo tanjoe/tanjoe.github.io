@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>python on Qiao</title>
+    <link>https://tanjoe.github.io/tags/python/</link>
+    <description>Recent content in python on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 03 Jan 2023 17:54:29 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决容器内运行conda的GLIBCXX问题</title>
+      <link>https://tanjoe.github.io/posts/%E8%A7%A3%E5%86%B3%E5%AE%B9%E5%99%A8%E5%86%85%E8%BF%90%E8%A1%8Cconda%E7%9A%84glibcxx%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 03 Jan 2023 17:54:29 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E8%A7%A3%E5%86%B3%E5%AE%B9%E5%99%A8%E5%86%85%E8%BF%90%E8%A1%8Cconda%E7%9A%84glibcxx%E9%97%AE%E9%A2%98/</guid>
+      <description>尝试在容器内运行conda，发现报错如下：
+conda &amp;#34;ImportError: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.26&amp;#39; not found&amp;#34; 解决方式 安装libgcc
+conda install libgcc 如果仍然报错，则
+export LD_LIBRARY_PATH=&amp;lt;conda-env-path&amp;gt;/lib:$LD_LIBRARY_PATH conda-env-path替换为conda的目录，核心是通过修改LD_LIBRARY_PATH，让conda的python正确加载conda安装的libstdc++，而非系统的版本
+To-Ask 为什么需要配环境变量？
+按理来说conda在安装时应当已经修改了bashrc、zshrc等文件，让shell环境里的LD_LIBRARY_PATH带上了conda的lib目录（需要检查下未挂载home目录的容器以确认）。有可能是因为在启动容器时挂载了整个home目录，导致容器内的bash用了host的配置所致。
+仔细想想，虽然挂载整个home目录用起来方便，但像shell配置、各类软件的cache本身是应该与host独立的，最好还是挂载home下的特定目录</description>
+    </item>
+    
+  </channel>
+</rss>

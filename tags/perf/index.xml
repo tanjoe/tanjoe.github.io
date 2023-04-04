@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>perf on Qiao</title>
+    <link>https://tanjoe.github.io/tags/perf/</link>
+    <description>Recent content in perf on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 25 Feb 2022 17:28:59 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/perf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Add dynamic tracing point in C&#43;&#43; dynamic library</title>
+      <link>https://tanjoe.github.io/posts/add-dynamic-tracing-point-in-c&#43;&#43;-dynamic-library/</link>
+      <pubDate>Fri, 25 Feb 2022 17:28:59 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/add-dynamic-tracing-point-in-c&#43;&#43;-dynamic-library/</guid>
+      <description>List functions To list all functions exported
+$ perf probe -x libQt5CoreKso.so --funcs --filter &amp;#39;*&amp;#39; If you don&amp;rsquo;t add --filter &#39;*&#39;, then all functions that start with _ will be filtered by default
+To list all functions in original form:
+$ perf probe -x libQt5CoreKso.so --funcs --no-demangle --filter &amp;#39;*&amp;#39; Combine with grep, you can find the desired function
+$ perf probe -x libQt5CoreKso.so --funcs --no-demangle --filter &amp;#39;*&amp;#39; | grep setValue _ZN6kso_qt11QJsonObject10setValueAtEiRKNS_10QJsonValueE _ZN6kso_qt18QCommandLineOption12setValueNameERKNS_7QStringE _ZN6kso_qt24QVariantAnimationPrivate10setValueAtEdRKNS_8QVariantE _ZN6kso_qt9QSettings8setValueERKNS_7QStringERKNS_8QVariantE Add tracing point To add a function as tracing point:</description>
+    </item>
+    
+  </channel>
+</rss>

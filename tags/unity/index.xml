@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Unity on Qiao</title>
+    <link>https://tanjoe.github.io/tags/unity/</link>
+    <description>Recent content in Unity on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 24 Mar 2023 14:46:42 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debug Unity Project on Android Device</title>
+      <link>https://tanjoe.github.io/posts/debug-unity-project-on-android-device/</link>
+      <pubDate>Fri, 24 Mar 2023 14:46:42 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/debug-unity-project-on-android-device/</guid>
+      <description>由于工作需要，在C++/Python的主业外，零零散散地与Unity打了些交道。这里记录下在安卓上调试Unity项目的要点。
+修改Build Settings 点击File-&amp;gt;Build Settings，在Android build setting里勾选“Development Build”和“Script Debugging”。
+开启USB调试 Android设备需开启USB调试选项。通常是在系统设置里查看系统信息，多次点击系统版本以启用开发者选项，再到开发者选项里启用USB调试即可。这一步是安卓开发的基础，略过不谈。
+连接设备到PC 有线连接 有线连接即通过USB线将设备连接到PC即可。可以通过adb devices命令确定可用的设备。
+无线连接 无线连接需要PC和Android设备连接到同一WIFI。
+查看设备IP 可以在设备的系统设置里找到IP，通常是在网络的详情里。也可以用ADB查看，终端执行
+adb shell ip addr show wlan0 连接到设备 PC终端执行
+adb tcpip 5555 adb connect [AndroidDeviceIP]:5555 Attach Unity Debugger 在Android上运行Unity应用后，在Visual Studio中点击“Debug”-&amp;gt;“Attach Unity Debugger”：
+随后选择对应的Android设备即可
+设置Android SDK路径 如果系统中有多个Android SDK版本，在Select Unity Instance中可能不会看到对应的设备，这是因为Visual Studio使用的SDK工具没有对应。
+在Unity中，点击Edit-&amp;gt;Preferences-&amp;gt;External Tools，复制所用的Android SDK工具路径：
+随后在Visual Studio中，点击Tool-&amp;gt;Options-&amp;gt;Tools for Unity-&amp;gt;General，设置Preferred Android Sdk Root：
+设置完成后，可能需要重新运行Unity应用，才能在Select Unity Instance中找到对应的设备。
+Reference Debugging Unity Project On Android Device With Visual Studio – Siddharth Shanker Mishra Cannot Debug on Android Device from Visual Studio - Unity Forum </description>
+    </item>
+    
+  </channel>
+</rss>

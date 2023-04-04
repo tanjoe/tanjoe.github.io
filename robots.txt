@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://tanjoe.github.io/sitemap.xml
