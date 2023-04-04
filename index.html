@@ -12,7 +12,32 @@ adb tcpip 5555 adb connect [AndroidDeviceIP]:5555 Attach Unity Debugger 在Andro
 在Unity中，点击Edit->Preferences->External Tools，复制所用的Android SDK工具路径：
 随后在Visual Studio中，点击Tool->Options->Tools for Unity->General，设置Preferred Android Sdk Root：
 设置完成后，可能需要重新运行Unity应用，才能在Select Unity Instance中找到对应的设备。
-Reference Debugging Unity Project On Android Device With Visual Studio – Siddharth Shanker Mishra Cannot Debug on Android Device from Visual Studio - Unity Forum</p></div><footer class=entry-footer><span title='2023-03-24 14:46:42 +0000 UTC'>2023-03-24</span>&nbsp;·&nbsp;Qiao</footer><a class=entry-link aria-label="post link to Debug Unity Project on Android Device" href=https://tanjoe.github.io/posts/debug-unity-project-on-android-device/></a></article><article class=post-entry><header class=entry-header><h2>Ubuntu 18.04上切换高版本GCC工具链</h2></header><div class=entry-content><p>Ubuntu 18.04上切换高版本GCC工具链 添加软件源 $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test 如果此前安装过非系统默认版本的python3，这一步有可能出错，产生类似
+Reference Debugging Unity Project On Android Device With Visual Studio – Siddharth Shanker Mishra Cannot Debug on Android Device from Visual Studio - Unity Forum</p></div><footer class=entry-footer><span title='2023-03-24 14:46:42 +0000 UTC'>2023-03-24</span>&nbsp;·&nbsp;Qiao</footer><a class=entry-link aria-label="post link to Debug Unity Project on Android Device" href=https://tanjoe.github.io/posts/debug-unity-project-on-android-device/></a></article><article class=post-entry><header class=entry-header><h2>mesh里的图着色问题</h2></header><div class=entry-content><p>背景 在用trimesh处理模型时，遇到这样一个问题：
+给定一个mesh和一张贴图，如何在mesh的每一个face（即每一个三角面片）上贴上此图？
+问题 设置贴图关键是设置顶点的uv坐标，最开始的思路是，先设置贴图的4个角落：
+uv = np.array([ [0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0], ]) 再建立一个(len(vertices), 2)的numpy数组，遍历时依次填入各角落对应的uv坐标。
+这样尝试后，发现mesh的贴图会出现很多奇怪的纹路——这是uv坐标有问题的表现。那问题出现在哪里？
+问题在于，mesh的face间会相邻，顶点可能在多个face中存在。因此遍历时，顶点的uv坐标可能覆盖，且同一个face的顶点可能用了相同的uv坐标。这样渲染时就可能是从texture中提取了点或线，而不是提取一个三角面，这些点/线在mesh的face上展开时，就会有异样的纹路。
+思路 之前的实现显然少了约束，思考一番后，重新定义问题如下：
+给出n个三角形，以及0、1、2、3共四个数，要求每个三角形的顶点都分配一个值，且三角形各个顶点的值不一致。在这些三角形有可能相邻的情况下，如何实现一个分配算法？
+拿纸演算了下，发现问题并不太简单。问题的描述又有些冗长，搜索后也没找到思路的火花。抱着试一试的想法，问了下chatGPT，其回答是：
+这是一个图着色问题，可以使用图论中的染色算法来解决。
+首先，将每个三角形看作一个节点，如果两个三角形有共同的边，则它们之间连一条边。这样得到的图称为三角形图。
+对于这个三角形图，可以使用贪心算法来进行染色。具体步骤如下：
+将三角形图中的所有节点按照度数从大到小排序。
+依次遍历每个节点，将其周围已经染色的节点的颜色从可选颜色列表中删除。
+如果所有可选颜色都已经被用过，为当前节点分配一个新的颜色。
+继续处理下一个节点，直到所有节点都被染色。
+对于本题中的0、1、2、3四个数，可以将它们看作四个颜色，每个三角形的顶点对应一个节点，然后按照上述方法进行染色即可。
+需要注意的是，这种染色算法并不能保证一定能够找到一种可行的染色方案。当图中存在奇环（即环的长度为奇数）时，无论使用何种染色算法都无法找到可行的染色方案。因此，在实际应用中，需要对算法进行改进或者针对特定的问题进行分析，以保证能够得到正确的结果。
+本来已经做好了chatGPT又会胡诌一番，煞有其事地编出些“算法”。但看到“图着色”的一刻，记忆又涌了上来——我知道它是对的。我怎么会没想到图着色呢？（好吧，图论在工作里遇到的实在太少了）
+再复习下图着色：
+简述图着色算法的原理与使用 - 掘金
+Vertex Coloring – from Wolfram MathWorld
+实现 现在首要问题变成了如何生成vertex的图。查看了下trimesh，颇为惊喜地发现trimesh就带了graph模块，并提供了trimesh.graph.vertex_adjacency_graph 函数，其返回一个networkx.Graph结构。
+再看networkx， 和其名称一样，是一个专门做图分析的包。那么应当有对经典着色问题的实现？果真有，Coloring — NetworkX 3.0 documentation
+剩下的实现变得颇为简单：
+mesh = trimesh.load('test.obj') texture = cv2.imread('test.png') # 省略其它处理 graph = trimesh.graph.vertex_adjacency_graph(mesh) coloring = nx.coloring.greedy_color(graph, interchange=True) num_colors = max(coloring....</p></div><footer class=entry-footer><span title='2023-03-16 14:21:45 +0000 UTC'>2023-03-16</span>&nbsp;·&nbsp;Qiao</footer><a class=entry-link aria-label="post link to mesh里的图着色问题" href=https://tanjoe.github.io/posts/mesh%E9%87%8C%E7%9A%84%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98/></a></article><article class=post-entry><header class=entry-header><h2>Ubuntu 18.04上切换高版本GCC工具链</h2></header><div class=entry-content><p>Ubuntu 18.04上切换高版本GCC工具链 添加软件源 $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test 如果此前安装过非系统默认版本的python3，这一步有可能出错，产生类似
 $ ModuleNotFoundError: No module named 'apt_pkg' 的错误。解决方法是：
 $ cd /usr/lib/python3/dist-packages $ sudo ln -s apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so 随后用update-alternatives将python3改回使用默认的版本：
 $ sudo update-alternatives --config python3 # 选择默认的python3版本。在Ubuntu 18.04上，这个版本是 安装工具链 可以通过apt search gcc或在https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test?field.series_filter=bionic 上查看可用的gcc版本。这里选择安装gcc-11
@@ -27,18 +52,7 @@ conda install libgcc 如果仍然报错，则
 export LD_LIBRARY_PATH=&lt;conda-env-path>/lib:$LD_LIBRARY_PATH conda-env-path替换为conda的目录，核心是通过修改LD_LIBRARY_PATH，让conda的python正确加载conda安装的libstdc++，而非系统的版本
 To-Ask 为什么需要配环境变量？
 按理来说conda在安装时应当已经修改了bashrc、zshrc等文件，让shell环境里的LD_LIBRARY_PATH带上了conda的lib目录（需要检查下未挂载home目录的容器以确认）。有可能是因为在启动容器时挂载了整个home目录，导致容器内的bash用了host的配置所致。
-仔细想想，虽然挂载整个home目录用起来方便，但像shell配置、各类软件的cache本身是应该与host独立的，最好还是挂载home下的特定目录</p></div><footer class=entry-footer><span title='2023-01-03 17:54:29 +0000 UTC'>2023-01-03</span>&nbsp;·&nbsp;Qiao</footer><a class=entry-link aria-label="post link to 解决容器内运行conda的GLIBCXX问题" href=https://tanjoe.github.io/posts/%E8%A7%A3%E5%86%B3%E5%AE%B9%E5%99%A8%E5%86%85%E8%BF%90%E8%A1%8Cconda%E7%9A%84glibcxx%E9%97%AE%E9%A2%98/></a></article><article class=post-entry><header class=entry-header><h2>在容器内使用显卡进行渲染</h2></header><div class=entry-content><p>由于要测试PyTorch3D生成的Mesh，而PyTorch3D的环境在本机又不好搭建，准备在Docker容器内做些渲染相关的工作，按关键词nvidia opengl docker搜索了一番，发现应该很好完成。
-结合几篇文章的内容，以及nvidia/opengl的Dockerfile来看，核心是安装libglvnd0及一些依赖库、配置好glvnd的vendor json文件、设置nvidia docker的环境变量即可，但一番操作下来，在容器内安装mesa-utils和glmark2后，用glxinfo和glmark2都显示vendor是：
-OpenGL renderer string: llvmpipe (LLVM 11.0.0, 256 bits) 即仍然在使用软渲染，但nvidia-smi在容器内工作又是正常的。
-使用集显 在Host机器上测试glxinfo和glmark2，发现vendor居然也不是nvidia而是MESA Intel，也就是电脑的集成显卡。不过集成显卡就集成显卡吧，好歹让容器能够用集显，这样工作好歹可以继续。
-测试后，发现在docker run时附带--device=/dev/dri:/dev/dri参数即可。这样操作后，容器内glxinfo总算显示vendor是集成显卡了，由于工作要求的渲染性能不高，代码倒也能跑起来。
-关于Linux DRI，可参考Linux graphic subsystem(2)_DRI介绍的说明
-使用独显 话说回来，为什么host和容器都显示vendor是集显而非Nvidia的独显？明明nvidia-smi工作正常，CUDA的代码也能运行。带此疑问，用why glxinfo not detect nvidia while nividia-smi works搜索一番，发现Nvidia的论坛里也有些相似的问题，但求助都没有明确答复。
-最后本机上打开nvidia-settings查看设置时，发现Profile里的3个选项：
-Nvidia (Performance mode) Nvidia On-Demand Intel (Power saving mode) 第3个很好理解，但Nvidia Performance mode和On-Demand又有什么区别？搜索一番，发现此贴：
-Nvidia On - Demand : Ubuntu
-there’s a good write up here: https://www.linuxuprising.com/2019/08/nvidia-43517-linux-beta-driver-adds.html
-on-demand means the Ubuntu optimus tool now lets you have dynamic switching of nvidia, but output is limited to the laptop screen, which is ‘bumblebee mode’, or the normal ubuntu Nvidia mode, which turns on the card after you restart X; this mode uses nvidia to render everything, and external monitors work....</p></div><footer class=entry-footer><span title='2023-01-01 10:01:29 +0000 UTC'>2023-01-01</span>&nbsp;·&nbsp;Qiao</footer><a class=entry-link aria-label="post link to 在容器内使用显卡进行渲染" href=https://tanjoe.github.io/posts/%E5%9C%A8%E5%AE%B9%E5%99%A8%E5%86%85%E4%BD%BF%E7%94%A8%E6%98%BE%E5%8D%A1%E8%BF%9B%E8%A1%8C%E6%B8%B2%E6%9F%93/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://tanjoe.github.io/page/2/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2023 <a href=https://tanjoe.github.io/>Qiao</a></span>
+仔细想想，虽然挂载整个home目录用起来方便，但像shell配置、各类软件的cache本身是应该与host独立的，最好还是挂载home下的特定目录</p></div><footer class=entry-footer><span title='2023-01-03 17:54:29 +0000 UTC'>2023-01-03</span>&nbsp;·&nbsp;Qiao</footer><a class=entry-link aria-label="post link to 解决容器内运行conda的GLIBCXX问题" href=https://tanjoe.github.io/posts/%E8%A7%A3%E5%86%B3%E5%AE%B9%E5%99%A8%E5%86%85%E8%BF%90%E8%A1%8Cconda%E7%9A%84glibcxx%E9%97%AE%E9%A2%98/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://tanjoe.github.io/page/2/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2023 <a href=https://tanjoe.github.io/>Qiao</a></span>
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
         <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

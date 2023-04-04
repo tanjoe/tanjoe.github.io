@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>visualization on Qiao</title>
-    <link>https://tanjoe.github.io/tags/visualization/</link>
-    <description>Recent content in visualization on Qiao</description>
+    <title>algorithm on Qiao</title>
+    <link>https://tanjoe.github.io/tags/algorithm/</link>
+    <description>Recent content in algorithm on Qiao</description>
     <image>
       <title>Qiao</title>
       <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 16 Mar 2023 14:21:45 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Mar 2023 14:21:45 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>mesh里的图着色问题</title>
       <link>https://tanjoe.github.io/posts/mesh%E9%87%8C%E7%9A%84%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98/</link>
@@ -43,19 +43,6 @@ Vertex Coloring &amp;ndash; from Wolfram MathWorld
 再看networkx， 和其名称一样，是一个专门做图分析的包。那么应当有对经典着色问题的实现？果真有，Coloring — NetworkX 3.0 documentation
 剩下的实现变得颇为简单：
 mesh = trimesh.load(&amp;#39;test.obj&amp;#39;) texture = cv2.imread(&amp;#39;test.png&amp;#39;) # 省略其它处理 graph = trimesh.graph.vertex_adjacency_graph(mesh) coloring = nx.coloring.greedy_color(graph, interchange=True) num_colors = max(coloring.</description>
-    </item>
-    
-    <item>
-      <title>为VTK修复vtkOBJReader的一个segfault</title>
-      <link>https://tanjoe.github.io/posts/%E4%B8%BAvtk%E4%BF%AE%E5%A4%8Dvtkobjreader%E7%9A%84%E4%B8%80%E4%B8%AAsegfault/</link>
-      <pubDate>Wed, 18 Jan 2023 10:28:40 +0000</pubDate>
-      
-      <guid>https://tanjoe.github.io/posts/%E4%B8%BAvtk%E4%BF%AE%E5%A4%8Dvtkobjreader%E7%9A%84%E4%B8%80%E4%B8%AAsegfault/</guid>
-      <description>Background 测试用PyTorch3D生成的Mesh时，打算用VTK对Mesh做离屏渲染生成图片，结果发现VTK的python binding和C++库都会在vtkOBJReader::Update时崩溃。由于是AI模型生成的OBJ文件，OBJ本身是有可能不太标准的，但用Blender、Open3D、trimesh测试，发现都可以加载该文件。看起来似乎VTK的vtkOBJReader实现不够健壮，遂决定调试一番。
-Debug 以导致问题的OBJ文件编写复现demo，目录结构：
-$ tree . . ├── assets │ ├── rand_0_diffuse.png │ ├── rand_0_normal.png │ ├── rand_0_skin.mtl │ ├── rand_0_skin.obj │ └── rand_0_spec.png ├── CMakeLists.txt └── main.cpp main.cpp：
-#include &amp;lt;vtkOBJReader.h&amp;gt; int main() { vtkNew&amp;lt;vtkOBJReader&amp;gt; reader; reader-&amp;gt;SetFileName(&amp;#34;rand_0_skin.obj&amp;#34;); reader-&amp;gt;Update(); return 0; } 崩溃堆栈：
-1 vtkAOSDataArrayTemplate&amp;lt;float&amp;gt;::GetTuple vtkAOSDataArrayTemplate.txx 275 0x7ffff6ee05e5 2 vtkOBJReader::RequestData vtkOBJReader.cxx 978 0x7ffff7b4c793 3 vtkPolyDataAlgorithm::ProcessRequest vtkPolyDataAlgorithm.cxx 87 0x7ffff28aaec6 4 vtkExecutive::CallAlgorithm vtkExecutive.cxx 734 0x7ffff287faf9 5 vtkDemandDrivenPipeline::ExecuteData vtkDemandDrivenPipeline.cxx 461 0x7ffff2876004 6 vtkCompositeDataPipeline::ExecuteData vtkCompositeDataPipeline.</description>
     </item>
     
   </channel>

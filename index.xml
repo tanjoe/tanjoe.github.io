@@ -34,6 +34,40 @@ Reference Debugging Unity Project On Android Device With Visual Studio – Siddh
     </item>
     
     <item>
+      <title>mesh里的图着色问题</title>
+      <link>https://tanjoe.github.io/posts/mesh%E9%87%8C%E7%9A%84%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 16 Mar 2023 14:21:45 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/mesh%E9%87%8C%E7%9A%84%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98/</guid>
+      <description>背景 在用trimesh处理模型时，遇到这样一个问题：
+给定一个mesh和一张贴图，如何在mesh的每一个face（即每一个三角面片）上贴上此图？
+问题 设置贴图关键是设置顶点的uv坐标，最开始的思路是，先设置贴图的4个角落：
+uv = np.array([ [0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0], ]) 再建立一个(len(vertices), 2)的numpy数组，遍历时依次填入各角落对应的uv坐标。
+这样尝试后，发现mesh的贴图会出现很多奇怪的纹路——这是uv坐标有问题的表现。那问题出现在哪里？
+问题在于，mesh的face间会相邻，顶点可能在多个face中存在。因此遍历时，顶点的uv坐标可能覆盖，且同一个face的顶点可能用了相同的uv坐标。这样渲染时就可能是从texture中提取了点或线，而不是提取一个三角面，这些点/线在mesh的face上展开时，就会有异样的纹路。
+思路 之前的实现显然少了约束，思考一番后，重新定义问题如下：
+给出n个三角形，以及0、1、2、3共四个数，要求每个三角形的顶点都分配一个值，且三角形各个顶点的值不一致。在这些三角形有可能相邻的情况下，如何实现一个分配算法？
+拿纸演算了下，发现问题并不太简单。问题的描述又有些冗长，搜索后也没找到思路的火花。抱着试一试的想法，问了下chatGPT，其回答是：
+这是一个图着色问题，可以使用图论中的染色算法来解决。
+首先，将每个三角形看作一个节点，如果两个三角形有共同的边，则它们之间连一条边。这样得到的图称为三角形图。
+对于这个三角形图，可以使用贪心算法来进行染色。具体步骤如下：
+将三角形图中的所有节点按照度数从大到小排序。
+依次遍历每个节点，将其周围已经染色的节点的颜色从可选颜色列表中删除。
+如果所有可选颜色都已经被用过，为当前节点分配一个新的颜色。
+继续处理下一个节点，直到所有节点都被染色。
+对于本题中的0、1、2、3四个数，可以将它们看作四个颜色，每个三角形的顶点对应一个节点，然后按照上述方法进行染色即可。
+需要注意的是，这种染色算法并不能保证一定能够找到一种可行的染色方案。当图中存在奇环（即环的长度为奇数）时，无论使用何种染色算法都无法找到可行的染色方案。因此，在实际应用中，需要对算法进行改进或者针对特定的问题进行分析，以保证能够得到正确的结果。
+本来已经做好了chatGPT又会胡诌一番，煞有其事地编出些“算法”。但看到“图着色”的一刻，记忆又涌了上来——我知道它是对的。我怎么会没想到图着色呢？（好吧，图论在工作里遇到的实在太少了）
+再复习下图着色：
+简述图着色算法的原理与使用 - 掘金
+Vertex Coloring &amp;ndash; from Wolfram MathWorld
+实现 现在首要问题变成了如何生成vertex的图。查看了下trimesh，颇为惊喜地发现trimesh就带了graph模块，并提供了trimesh.graph.vertex_adjacency_graph 函数，其返回一个networkx.Graph结构。
+再看networkx， 和其名称一样，是一个专门做图分析的包。那么应当有对经典着色问题的实现？果真有，Coloring — NetworkX 3.0 documentation
+剩下的实现变得颇为简单：
+mesh = trimesh.load(&amp;#39;test.obj&amp;#39;) texture = cv2.imread(&amp;#39;test.png&amp;#39;) # 省略其它处理 graph = trimesh.graph.vertex_adjacency_graph(mesh) coloring = nx.coloring.greedy_color(graph, interchange=True) num_colors = max(coloring.</description>
+    </item>
+    
+    <item>
       <title>Ubuntu 18.04上切换高版本GCC工具链</title>
       <link>https://tanjoe.github.io/posts/ubuntu-18.04%E4%B8%8A%E5%88%87%E6%8D%A2%E9%AB%98%E7%89%88%E6%9C%ACgcc%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
       <pubDate>Sun, 19 Feb 2023 08:35:31 +0000</pubDate>
