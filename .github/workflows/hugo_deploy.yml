@@ -1,0 +1,32 @@
+name: pages-auto-build-deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync repo
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          ssh-key: ${{ secrets.BLOG_REPO_DEPLOY_PRIVATE_KEY }}
+          lfs: true
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Hugo
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAGE_ACTION_SECRET }}
+          publish_dir: ./public
+          commit_message: ${{ github.event.head_commit.message }}
