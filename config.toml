@@ -1,0 +1,123 @@
+baseURL = "https://tanjoe.github.io/"
+title = "Qiao"
+paginate = 5
+theme = "papermod"
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+googleAnalytics = ""
+pygmentsUseClasses = true
+
+[minify]
+disableXML = true
+minifyOutput = true
+
+[params]
+env = "production"
+title = "Qiao"
+description = ""
+keywords = ["Blog", "Portfolio", "PaperMod"]
+author = "Qiao"
+images = ["<link or path of image for opengraph, twitter-cards>"]
+DateFormat = "2006-01-02"
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowShareButtons = false
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowReadingTime = false
+ShowWordCount = false
+ShowRssButtonInSectionTermList = true
+UseHugoToc = true
+disableSpecial1stPost = false
+disableScrollToTop = false
+comments = false
+hidemeta = false
+hideSummary = false
+showtoc = false
+tocopen = false
+
+[params.assets]
+favicon = "<link / abs url>"
+favicon16x16 = "<link / abs url>"
+favicon32x32 = "<link / abs url>"
+apple_touch_icon = "<link / abs url>"
+safari_pinned_tab = "<link / abs url>"
+
+[params.label]
+text = "Home"
+icon = "/apple-touch-icon.png"
+iconHeight = 35
+
+[params.profileMode]
+enabled = false
+title = ""
+subtitle = ""
+imageUrl = "<img location>"
+imageWidth = 120
+imageHeight = 120
+imageTitle = ""
+
+[[params.profileMode.buttons]]
+name = "Posts"
+url = "posts"
+
+[[params.profileMode.buttons]]
+name = "Tags"
+url = "tags"
+
+[params.homeInfoParams]
+Title = "Qiao"
+Content = ""
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/tanjoe"
+
+[[params.socialIcons]]
+name = "stackoverflow"
+url = "https://stackoverflow.com/users/9667324/tanjor"
+
+[[params.socialIcons]]
+name = "rss"
+url = "index.xml"
+
+[params.analytics.google]
+SiteVerificationTag = ""
+
+[params.analytics.bing]
+SiteVerificationTag = ""
+
+[params.analytics.yandex]
+SiteVerificationTag = ""
+
+[params.cover]
+hidden = true
+hiddenInList = true
+hiddenInSingle = true
+
+[params.fuseOpts]
+isCaseSensitive = false
+shouldSort = true
+location = 0
+distance = 1_000
+threshold = 0.4
+minMatchCharLength = 0
+keys = ["title", "permalink", "summary", "content"]
+
+[[menu.main]]
+identifier = "categories"
+name = "categories"
+url = "/categories/"
+weight = 10
+
+[[menu.main]]
+identifier = "tags"
+name = "tags"
+url = "/tags/"
+weight = 20
+
+[markup.highlight]
+noClasses = false
