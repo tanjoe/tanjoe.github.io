@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - master
-  repository_dispatch:
-    types: [posts-push]
 
 jobs:
   build-and-deploy:
