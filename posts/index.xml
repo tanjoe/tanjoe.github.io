@@ -10,7 +10,25 @@
       <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 24 Mar 2023 14:46:42 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Apr 2023 09:43:51 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从Hexo到Hugo</title>
+      <link>https://tanjoe.github.io/posts/%E4%BB%8Ehexo%E5%88%B0hugo/</link>
+      <pubDate>Thu, 06 Apr 2023 09:43:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/%E4%BB%8Ehexo%E5%88%B0hugo/</guid>
+      <description>从Hexo到Hugo 背景 促使我从WordPress搬迁到Hexo，再决定从Hexo搬迁到Hugo的动机是：想尽可能简化写博客的流程，减少除文章撰写以外一切无关事务的精力消耗。
+这一追求源于我对自身的观察。一天的精力里往往绝大部分都投入在工作之上，在闲暇中再挤出时间投入写作对意志力是个考验。以往使用WordPress时，一旦VPS的访问速度不佳，那登录后台、打开编辑器、调整样式过程中等待耗费的时间，就足以将不多的意志力消磨干净。
+后续切到Hexo+Github Pages后，不得不说，这让博客的发布顺畅不少，不再需要登录后台，几乎不需要考虑排版，迁移站点时也不再有数据库的顾虑。唯一的麻烦是，每次修改文件后，需要调用Hexo CLI重新生成站点并推送到Github Pages仓库。这也意味着本地总得准备一份Node.js环境。思考一番后，前面通过使用Github Actions部署Hexo把生成和部署也自动化了，只需要写文章并推送即可。
+这么愉快地用了些时日，但在和Obsidian的配合使用中，又发现了新的矛盾：
+Hexo如果需要用相对路径引用图片，图片应置于文章同名的文件夹下。而在Obsidian中，我所采取的方式是图片集中放置于media目录下 笔记现在总是用Obsidian创建，但需要为Hexo复制一份需要发布的文章及资源，而重复总是不利于维护的 如果将Hexo仓库置于Obsidian Vault中，再将需要发布的文章直接放到Hexo仓库的posts目录下，虽然不用复制文章，但Obsidian Vault中会带入Hexo/Node.js相关的文件。这些文件和笔记无关，在整理笔记时无异于噪音 这些问题都可以通过修改笔记来迁就Hexo，但这就是前文所说的，文章撰写以外的事务。我现在相信：应当让博客工具迁就写作习惯，而不是调整写作习惯来适应工具。
+方法 为解决以上矛盾，想到的方法是：
+在Vault中新建一个文件夹（这里记作Publish），在其中初始化Git仓库，存放供发布的文章 新建一个静态站点文件夹，同样初始话Git仓库，Publish仓库作为Git子模块加入其中 静态站点生成器应支持相对路径，且对文件夹的名称无要求 这样Obsidian Vault中只需要存放笔记，至于静态站点生成相关的内容则不再其中。为了方便博客发布的流程，还应该做到：
+推送静态站点仓库时，应自动生成和部署站点，免去本地生成站点的麻烦 在Publish仓库中推送时，应自动更新静态站点仓库，让子模块引用Publish仓库的最新提交，免去需要在两个仓库中提交和推送的麻烦 做到这些后，应当可以：
+不需要为了发布而改变记录笔记的方式 只维护一份需发布的资源 只需推送文章到远端，站点即能自动更新，本地不需要配置环境或手动生成站点 本想看看有没有办法让Hexo支持任意文件夹名的相对路径，但惊讶地发现并没有轻松的方式实现（我原以为这是非常常见的需求）。Gatsby/Jekyll/Hugo等一众工具也不原生支持此需求，这似乎与文件名到URL的映射有关。不过 GitHub - zoni/obsidian-export: Rust library and CLI to export an Obsidian vault to regular Markdown 提供了一个解决方式，遂决定切换到Hugo。
+实施 支持相对路径 在Obsidian Vault中新建一个文件夹（这里记为Publish），在其中初始化Git仓库，存放供发布的文章。在Github上创建远端仓库并推送 用hugo new site命令创建站点文件夹（这里记为Site），同样初始化Git仓库。在Github上创建xxx.github.io名称的仓库并推送 与Hexo一样，Hugo同样支持主题，这里选用了PaperMod | Hugo Themes 在主题的layouts/_default/_markup/render-image.html中，加入以下代码片段以支持相对路径引用图片： {{- $url := urls.Parse .Destination -}} {{- $scheme := $url.Scheme -}} &amp;lt;a href=&amp;#34; {{- if eq $scheme &amp;#34;&amp;#34; -}} {{- if strings.</description>
+    </item>
+    
     <item>
       <title>Debug Unity Project on Android Device</title>
       <link>https://tanjoe.github.io/posts/debug-unity-project-on-android-device/</link>

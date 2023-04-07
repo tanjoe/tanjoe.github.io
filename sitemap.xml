@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tanjoe.github.io/tags/blog/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/ci/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/hexo/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/hugo/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/posts/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/posts/%E4%BB%8Ehexo%E5%88%B0hugo/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/%E6%8A%98%E8%85%BE/</loc>
+    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
+  </url><url>
     <loc>https://tanjoe.github.io/tags/android/</loc>
     <lastmod>2023-03-24T14:46:42+00:00</lastmod>
   </url><url>
@@ -9,15 +36,6 @@
     <lastmod>2023-03-24T14:46:42+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/posts/debug-unity-project-on-android-device/</loc>
-    <lastmod>2023-03-24T14:46:42+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/posts/</loc>
-    <lastmod>2023-03-24T14:46:42+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/</loc>
-    <lastmod>2023-03-24T14:46:42+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/tags/</loc>
     <lastmod>2023-03-24T14:46:42+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/tags/unity/</loc>
@@ -74,12 +92,6 @@
     <loc>https://tanjoe.github.io/tags/wsl2/</loc>
     <lastmod>2022-12-13T20:13:00+00:00</lastmod>
   </url><url>
-    <loc>https://tanjoe.github.io/tags/ci/</loc>
-    <lastmod>2022-12-10T16:28:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/tags/hexo/</loc>
-    <lastmod>2022-12-10T16:28:00+00:00</lastmod>
-  </url><url>
     <loc>https://tanjoe.github.io/posts/%E4%BD%BF%E7%94%A8github-actions%E9%83%A8%E7%BD%B2hexo/</loc>
     <lastmod>2022-12-10T16:28:00+00:00</lastmod>
   </url><url>
@@ -135,5 +147,7 @@
     <lastmod>2020-07-23T10:09:23+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/categories/</loc>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/ci/cd/</loc>
   </url>
 </urlset>

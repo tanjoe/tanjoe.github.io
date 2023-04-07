@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Hexo on Qiao</title>
-    <link>https://tanjoe.github.io/tags/hexo/</link>
-    <description>Recent content in Hexo on Qiao</description>
+    <title>Hugo on Qiao</title>
+    <link>https://tanjoe.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on Qiao</description>
     <image>
       <title>Qiao</title>
       <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 06 Apr 2023 09:43:51 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Apr 2023 09:43:51 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从Hexo到Hugo</title>
       <link>https://tanjoe.github.io/posts/%E4%BB%8Ehexo%E5%88%B0hugo/</link>
@@ -27,24 +27,6 @@ Hexo如果需要用相对路径引用图片，图片应置于文章同名的文�
 推送静态站点仓库时，应自动生成和部署站点，免去本地生成站点的麻烦 在Publish仓库中推送时，应自动更新静态站点仓库，让子模块引用Publish仓库的最新提交，免去需要在两个仓库中提交和推送的麻烦 做到这些后，应当可以：
 不需要为了发布而改变记录笔记的方式 只维护一份需发布的资源 只需推送文章到远端，站点即能自动更新，本地不需要配置环境或手动生成站点 本想看看有没有办法让Hexo支持任意文件夹名的相对路径，但惊讶地发现并没有轻松的方式实现（我原以为这是非常常见的需求）。Gatsby/Jekyll/Hugo等一众工具也不原生支持此需求，这似乎与文件名到URL的映射有关。不过 GitHub - zoni/obsidian-export: Rust library and CLI to export an Obsidian vault to regular Markdown 提供了一个解决方式，遂决定切换到Hugo。
 实施 支持相对路径 在Obsidian Vault中新建一个文件夹（这里记为Publish），在其中初始化Git仓库，存放供发布的文章。在Github上创建远端仓库并推送 用hugo new site命令创建站点文件夹（这里记为Site），同样初始化Git仓库。在Github上创建xxx.github.io名称的仓库并推送 与Hexo一样，Hugo同样支持主题，这里选用了PaperMod | Hugo Themes 在主题的layouts/_default/_markup/render-image.html中，加入以下代码片段以支持相对路径引用图片： {{- $url := urls.Parse .Destination -}} {{- $scheme := $url.Scheme -}} &amp;lt;a href=&amp;#34; {{- if eq $scheme &amp;#34;&amp;#34; -}} {{- if strings.</description>
-    </item>
-    
-    <item>
-      <title>使用Github Actions部署Hexo</title>
-      <link>https://tanjoe.github.io/posts/%E4%BD%BF%E7%94%A8github-actions%E9%83%A8%E7%BD%B2hexo/</link>
-      <pubDate>Sat, 10 Dec 2022 16:28:00 +0000</pubDate>
-      
-      <guid>https://tanjoe.github.io/posts/%E4%BD%BF%E7%94%A8github-actions%E9%83%A8%E7%BD%B2hexo/</guid>
-      <description>切换到Hexo写博客后，每次换电脑都要来遍NodeJS、Hexo的配置。虽然不算困难，但挺消耗写文章的心情，故决定折腾下Github CI，实现写完文章后推送就自动完成Hexo的生成和部署，这样方便专注于文章的撰写，不被环境搭建分散精力。
-设置仓库 准备两个仓库，一个为博客源码仓库，一个是静态页面仓库。
-博客源码仓库：名称任意，设为私有
-静态页面仓库：名称需按照xxx.github.io格式来，必须设为公开的，存放Hexo生成的内容。参考https://pages.github.com/
-设置密钥 为了向静态页面仓库推送内容，需要添加一对SSH密钥，其中公钥设置到静态页面仓库，私钥设置到源码仓库。
-生成密钥
-ssh-keygen -t ed25519 -C &amp;#34;your_email@example.com&amp;#34; 在Github的静态仓库页面，添加新的Deploy Key。在Settings -&amp;gt; Deploy keys -&amp;gt; Add new中，填入任意Title，Value则是新生成的公钥内容。由于要往此仓库推送，需勾选”Allow Write Access“。
-在Github的源码仓库页面，在Settings -&amp;gt; Secrets -&amp;gt; Actions中点击New repository secret，Name设置为DEPLOY_KEY（后面配置Github Actions的脚本时会用NAME索引到此secret），Value填入新生成私钥的内容
-定义Workflows 在源码仓库根目录下，创建.github/workflows/hexo_deploy.yml文件，内容如下：
-name: HEXO_DEPLOY on: push: branches: - master jobs: build: runs-on: ubuntu-latest steps: - name: Checkout source uses: actions/checkout@v2.5.0 with: ref: master submodules: &amp;#39;true&amp;#39; - name: Use Node.js uses: actions/setup-node@v3 with: node-version: 18 - name: Setup hexo env: ACTION_DEPLOY_KEY: ${{ secrets.</description>
     </item>
     
   </channel>

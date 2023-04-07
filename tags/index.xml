@@ -10,7 +10,52 @@
       <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 24 Mar 2023 14:46:42 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Apr 2023 09:43:51 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>https://tanjoe.github.io/tags/blog/</link>
+      <pubDate>Thu, 06 Apr 2023 09:43:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI</title>
+      <link>https://tanjoe.github.io/tags/ci/</link>
+      <pubDate>Thu, 06 Apr 2023 09:43:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hexo</title>
+      <link>https://tanjoe.github.io/tags/hexo/</link>
+      <pubDate>Thu, 06 Apr 2023 09:43:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/hexo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://tanjoe.github.io/tags/hugo/</link>
+      <pubDate>Thu, 06 Apr 2023 09:43:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>折腾</title>
+      <link>https://tanjoe.github.io/tags/%E6%8A%98%E8%85%BE/</link>
+      <pubDate>Thu, 06 Apr 2023 09:43:51 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/%E6%8A%98%E8%85%BE/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Android</title>
       <link>https://tanjoe.github.io/tags/android/</link>
@@ -138,24 +183,6 @@
     </item>
     
     <item>
-      <title>CI</title>
-      <link>https://tanjoe.github.io/tags/ci/</link>
-      <pubDate>Sat, 10 Dec 2022 16:28:00 +0000</pubDate>
-      
-      <guid>https://tanjoe.github.io/tags/ci/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hexo</title>
-      <link>https://tanjoe.github.io/tags/hexo/</link>
-      <pubDate>Sat, 10 Dec 2022 16:28:00 +0000</pubDate>
-      
-      <guid>https://tanjoe.github.io/tags/hexo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tracing</title>
       <link>https://tanjoe.github.io/tags/tracing/</link>
       <pubDate>Fri, 25 Feb 2022 18:04:35 +0000</pubDate>
@@ -233,6 +260,15 @@
       <pubDate>Thu, 23 Jul 2020 10:09:23 +0000</pubDate>
       
       <guid>https://tanjoe.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI/CD</title>
+      <link>https://tanjoe.github.io/tags/ci/cd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/tags/ci/cd/</guid>
       <description></description>
     </item>
     
