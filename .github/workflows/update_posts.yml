@@ -3,6 +3,7 @@ name: Update posts in submodule
 on:
   repository_dispatch:
     types: [posts-push]
+  # Allows you to run this workflow manually from the Actions tab or through HTTP API
   workflow_dispatch:
 
 jobs:
@@ -14,7 +15,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        # token: ${{ secrets.AUTO_SYNC_POSTS_PAT }}
         ssh-key: ${{ secrets.BLOG_REPO_DEPLOY_PRIVATE_KEY }}
         submodules: true
         lfs: true
