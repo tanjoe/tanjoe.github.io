@@ -10,7 +10,21 @@
       <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 21 Sep 2020 15:11:34 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/qt/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Tue, 25 Apr 2023 10:49:46 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/qt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PySide6 实践</title>
+      <link>https://tanjoe.github.io/posts/pyside6-%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Tue, 25 Apr 2023 10:49:46 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/pyside6-%E5%AE%9E%E8%B7%B5/</guid>
+      <description>信号槽问题 Python中的任意函数都可以作为槽函数使用而无需使用@Slot装饰器，只要它符合与信号连接的规则(参数对应上)，使用@Slot显示地声明可以提高效率，而不需要Python去隐式地转换类型。
+python - Is the PySide Slot Decorator Necessary? - Stack Overflow
+另一篇文章Should I decorate slots in Pyside2 and if so how?的回答：
+As to whether you should decorate the slots, it&amp;rsquo;s a little trickier to answer &amp;ndash; but generally speaking no, you don&amp;rsquo;t need to.
+The only place I know the slot decorator is needed is when a) using threads, as it ensures the decorated method is started in the correct thread, or b) when you want to explicitly map a given slot to a specific call signature (types) in C++.</description>
+    </item>
+    
     <item>
       <title>在Windows环境下编译Qt-5-15-1</title>
       <link>https://tanjoe.github.io/posts/%E5%9C%A8windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%BC%96%E8%AF%91qt-5-15-1/</link>

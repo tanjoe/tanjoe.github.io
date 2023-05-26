@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tanjoe.github.io/tags/calibration/</loc>
+    <lastmod>2023-05-10T17:38:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/camera/</loc>
+    <lastmod>2023-05-10T17:38:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/computervision/</loc>
+    <lastmod>2023-05-10T17:38:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/posts/opencv%E9%B1%BC%E7%9C%BC%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2023-05-10T17:38:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/posts/</loc>
+    <lastmod>2023-05-10T17:38:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/</loc>
+    <lastmod>2023-05-10T17:38:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/</loc>
+    <lastmod>2023-05-10T17:38:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/posts/airsim%E4%B8%AD%E9%92%88%E5%AD%94%E7%9B%B8%E6%9C%BA%E7%95%B8%E5%8F%98%E7%9A%84%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2023-05-04T15:21:17+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/computergraphics/</loc>
+    <lastmod>2023-05-04T15:21:17+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/simulation/</loc>
+    <lastmod>2023-05-04T15:21:17+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/unreal/</loc>
+    <lastmod>2023-05-04T15:21:17+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/posts/ue%E9%95%9C%E5%A4%B4%E7%95%B8%E5%8F%98%E6%A8%A1%E6%8B%9Fopencv-lens-distortion/</loc>
+    <lastmod>2023-04-28T13:43:06+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/posts/pyside6-%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2023-04-25T10:49:46+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/python/</loc>
+    <lastmod>2023-04-25T10:49:46+00:00</lastmod>
+  </url><url>
+    <loc>https://tanjoe.github.io/tags/qt/</loc>
+    <lastmod>2023-04-25T10:49:46+00:00</lastmod>
+  </url><url>
     <loc>https://tanjoe.github.io/tags/blog/</loc>
     <lastmod>2023-04-06T09:43:51+00:00</lastmod>
   </url><url>
@@ -12,15 +57,6 @@
     <lastmod>2023-04-06T09:43:51+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/tags/hugo/</loc>
-    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/posts/</loc>
-    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/</loc>
-    <lastmod>2023-04-06T09:43:51+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/tags/</loc>
     <lastmod>2023-04-06T09:43:51+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/posts/%E4%BB%8Ehexo%E5%88%B0hugo/</loc>
@@ -45,9 +81,6 @@
     <lastmod>2023-03-16T14:21:45+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/posts/mesh%E9%87%8C%E7%9A%84%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2023-03-16T14:21:45+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/tags/python/</loc>
     <lastmod>2023-03-16T14:21:45+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/tags/trimesh/</loc>
@@ -127,9 +160,6 @@
   </url><url>
     <loc>https://tanjoe.github.io/posts/%E5%A4%84%E7%90%86%E6%89%98%E7%AE%A1c&#43;&#43;%E7%9A%84eefileloadexception/</loc>
     <lastmod>2020-11-04T11:58:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tanjoe.github.io/tags/qt/</loc>
-    <lastmod>2020-09-21T15:11:34+00:00</lastmod>
   </url><url>
     <loc>https://tanjoe.github.io/posts/%E5%9C%A8windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%BC%96%E8%AF%91qt-5-15-1/</loc>
     <lastmod>2020-09-21T15:11:34+00:00</lastmod>

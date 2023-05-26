@@ -10,6 +10,7 @@
       <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Thu, 17 Sep 2020 11:42:52 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Windows上编译VTK-9-0-1及其示例</title>

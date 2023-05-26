@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ComputerGraphics on Qiao</title>
+    <link>https://tanjoe.github.io/tags/computergraphics/</link>
+    <description>Recent content in ComputerGraphics on Qiao</description>
+    <image>
+      <title>Qiao</title>
+      <url>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tanjoe.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 04 May 2023 15:21:17 +0000</lastBuildDate><atom:link href="https://tanjoe.github.io/tags/computergraphics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AirSim中针孔相机畸变的实现</title>
+      <link>https://tanjoe.github.io/posts/airsim%E4%B8%AD%E9%92%88%E5%AD%94%E7%9B%B8%E6%9C%BA%E7%95%B8%E5%8F%98%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Thu, 04 May 2023 15:21:17 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/airsim%E4%B8%AD%E9%92%88%E5%AD%94%E7%9B%B8%E6%9C%BA%E7%95%B8%E5%8F%98%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+      <description>查阅AirSim的文档可知，AirSim支持通过simSetDistortionParams设置K1, K2, K3, P1, P2这5个畸变系数。UE镜头畸变模拟：OpenCV Lens Distortion一文提及过，Unreal的OpenCV Lens Distortion插件是通过生成的Post Process Material对UV坐标施加偏移来模拟镜头畸变。那么，AirSim又是如何处理的呢？
+基本流程探究 打开任意集成了AirSim插件的Unreal工程，用Visual Studio翻阅工程源码，重点是AirSim插件的cpp代码。
+在整个项目中搜索simSetDistortionParams，找到RPC客户端和服务端的实现。客户端：
+// &amp;lt;path-to-project&amp;gt;\Plugins\AirSim\Source\AirLib\src\api\RpcLibClientBase.cpp void RpcLibClientBase::simSetDistortionParam(const std::string&amp;amp; camera_name, const std::string&amp;amp; param_name, float value, const std::string&amp;amp; vehicle_name, bool external) { pimpl_-&amp;gt;client.call(&amp;#34;simSetDistortionParam&amp;#34;, camera_name, param_name, value, vehicle_name, external); } 服务端：
+// &amp;lt;path-to-project&amp;gt;\Plugins\AirSim\Source\AirLib\src\api\RpcLibServerBase.cpp // 省略其余binding... pimpl_-&amp;gt;server.bind(&amp;#34;simSetDistortionParam&amp;#34;, [&amp;amp;](const std::string&amp;amp; camera_name, const std::string&amp;amp; param_name, float value, const std::string&amp;amp; vehicle_name, bool external) -&amp;gt; void { getWorldSimApi()-&amp;gt;setDistortionParam(param_name, value, CameraDetails(camera_name, vehicle_name, external)); }); // ... 顺藤摸瓜，找到WorldSimApi::setDistortionParam：</description>
+    </item>
+    
+    <item>
+      <title>UE镜头畸变模拟：OpenCV Lens Distortion</title>
+      <link>https://tanjoe.github.io/posts/ue%E9%95%9C%E5%A4%B4%E7%95%B8%E5%8F%98%E6%A8%A1%E6%8B%9Fopencv-lens-distortion/</link>
+      <pubDate>Fri, 28 Apr 2023 13:43:06 +0000</pubDate>
+      
+      <guid>https://tanjoe.github.io/posts/ue%E9%95%9C%E5%A4%B4%E7%95%B8%E5%8F%98%E6%A8%A1%E6%8B%9Fopencv-lens-distortion/</guid>
+      <description>出于仿真的需要，希望在Unreal中能模拟鱼眼镜头的畸变效果，看到UE官方提供了Lens Distortion和OpenCV Lens Distortion两款插件用于模拟镜头畸变，但可惜相关资料不多。UE的博文UE中的相机标定、畸变模拟与矫正 - Unreal Engine做了些介绍，但步骤却又不是很详尽，初学者如我使用时不免多绕了些路，遂写下此文。
+插件介绍 这里结合UE中的相机标定、畸变模拟与矫正 - Unreal Engine的介绍，总结如下：
+Lens Distortion和OpenCV Lens Distortion用的camera model是一样的，背后的原理也类似。都是根据相机畸变参数生成displacement map，以此模拟镜头畸变 Lens Distortion没有标定功能，且只包含了畸变系数的前几项 Lens Distortion通过shader生成displacement map，而OpenCV Lens Distortion通过OpenCV的API用CPU计算生成，前者效率更快。不过由于displacement map通常只生成一次，这里的效率差异不太重要 补充：什么是displacement map？
+A displacement map is a type of texture that is used in 3D computer graphics to create the illusion of depth and detail on a surface without actually changing the geometry of the mesh. A displacement map is typically a grayscale image where the brightness values of each pixel correspond to the amount of displacement that should be applied to the surface at that point.</description>
+    </item>
+    
+  </channel>
+</rss>
